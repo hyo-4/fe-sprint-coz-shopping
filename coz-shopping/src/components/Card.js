@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { AiOutlineStar,AiTwotoneStar } from "react-icons/ai";
 
-function Card({ item }) {
+function Card({ item , booked}) {
 
 
     switch (item.type) {
         case 'Product':
             return (
              <div className="card">
+                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div>{item.title}</div>
                 <div>{item.discount}%</div>
@@ -16,6 +18,7 @@ function Card({ item }) {
         case 'Category':
             return (
                 <div className="card">
+                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div># {item.title}</div>
              </div>
@@ -23,6 +26,7 @@ function Card({ item }) {
         case 'Brand':
             return (
                 <div className="card">
+                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.brand_url} width="264" height="210"></img>
                 <div>{item.brand}</div>
                 <div>관심 고객수</div>
@@ -32,6 +36,7 @@ function Card({ item }) {
         case 'Exhibition':
             return (
                 <div className="card">
+                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div>{item.title}</div>
                 <div>{item.sub_title}</div>
