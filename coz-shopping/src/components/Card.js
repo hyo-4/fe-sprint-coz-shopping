@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineStar,AiTwotoneStar } from "react-icons/ai";
+import Modal from "./Modal";
 
 function Card({ item , booked ,setBooked}) {
 
     const [bookmark, setBookmark] = useState(false);
+    const [click, setClick] = useState(false);
 
     const bookmarking = () => {
 
@@ -36,37 +38,49 @@ function Card({ item , booked ,setBooked}) {
             return (          
              <div className="card">
                 <div className="bookmark" onClick={bookmarking} >{ booked && booked.includes(item.id) ? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className = "clickArea" onClick={()=>setClick(!click)}>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div>{item.title}</div>
                 <div>{item.discount}%</div>
                 <div>{item.price}원</div>
+                </div>
+                <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked}/>:null}</div>
              </div>
             );
         case 'Category':
             return (
                 <div className="card">
                 <div className="bookmark" onClick={bookmarking}>{ booked && booked.includes(item.id) ? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className = "clickArea" onClick={()=>setClick(!click)}>
                 <img id = "img_card" src= {item.img_url} width="264" height="210" ></img>
                 <div># {item.title}</div>
+                </div>
+                <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked}/>:null}</div>
              </div>
             );
         case 'Brand':
             return (
                 <div className="card" >
                 <div className="bookmark" onClick={bookmarking}>{ booked && booked.includes(item.id) ? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className = "clickArea" onClick={()=>setClick(!click)}>
                 <img id = "img_card" src= {item.brand_url} width="264" height="210"></img>
                 <div>{item.brand}</div>
                 <div>관심 고객수</div>
                 <div>{item.follower}</div>
+                </div>
+                <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked}/>:null}</div>
              </div>
             );
         case 'Exhibition':
             return (
                 <div className="card">
                 <div className="bookmark" onClick={bookmarking} >{ booked && booked.includes(item.id) ? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className = "clickArea" onClick={()=>setClick(!click)}>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div>{item.title}</div>
                 <div>{item.sub_title}</div>
+                </div>
+                <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked}/>:null}</div>
              </div>
             );
         default:

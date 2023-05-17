@@ -8,7 +8,7 @@ function BookMarkList({items , booked , setBooked}){
     },[]) 
 
     const newItemList = items.filter((item)=> booked.includes(item.id));
-    
+
     return (
         <div className="bookmark-list">
             {newItemList.slice(0,4).map((item) => (
