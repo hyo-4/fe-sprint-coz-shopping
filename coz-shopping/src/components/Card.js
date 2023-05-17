@@ -4,12 +4,10 @@ import Modal from "./Modal";
 
 function Card({ item, booked, setBooked }) {
 
-    const [bookmark, setBookmark] = useState(false);
     const [click, setClick] = useState(false);
 
     const bookmarking = () => {
 
-        setBookmark(!bookmark);
         let newbookedlist = JSON.parse(localStorage.getItem("booked"));
 
         if (newbookedlist === null) { newbookedlist = [] };
@@ -18,23 +16,16 @@ function Card({ item, booked, setBooked }) {
             newbookedlist = newbookedlist.filter((el)=> el !== item.id);
             localStorage.setItem("booked", JSON.stringify(newbookedlist));
             setBooked(newbookedlist);
-            setBookmark(!bookmark);
         }
         else{ // 북마크 되지 않은 상품일 경우에는 추가
             newbookedlist.push(item.id);
             newbookedlist = [...new Set(newbookedlist)];
             localStorage.setItem("booked", JSON.stringify(newbookedlist));
             setBooked(newbookedlist);
-            setBookmark(!bookmark);
         }
         
         
     }
-
-    useEffect(()=>{
-        setBooked(JSON.parse(localStorage.getItem("booked")));
-    },[bookmark]) //새로고침용
-
     
     switch (item.type) {
         case 'Product':

@@ -3,10 +3,6 @@ import Card from "./Card";
 
 function BookMarkList({items , booked , setBooked}){
 
-    useEffect(()=>{
-        setBooked(JSON.parse(localStorage.getItem("booked")));
-    },[]) 
-
     const newItemList = items.filter((item)=> booked.includes(item.id));
 
     return (

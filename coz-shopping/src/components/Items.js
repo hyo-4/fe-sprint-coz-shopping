@@ -6,10 +6,6 @@ import BookMarkList from "./BookMarkList";
 
 function Items({items, booked,setBooked}){
 
-  useEffect(() => {
-    setBooked(JSON.parse(localStorage.getItem("booked")));
-  }, []);
-
       return (
         <div id ="item-list">
             <div id = "item-title">상품 리스트</div>
