@@ -5,13 +5,13 @@ import ItemList from './pages/itemList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Items from './components/Items';
 import BookMarkList from './components/BookMarkList';
+import BookMarkPage from "./pages/BookMarkPage";
 
 
 function App() {
 
-  const bookMarked = JSON.parse(localStorage.getItem("booked"));
   const [items, setItems] = useState([]);
-  const [booked , setBooked] = useState(bookMarked);
+  const [booked , setBooked] = useState([]);
   
   const getItems = async () => {
       const res = await fetch(
@@ -41,9 +41,6 @@ function App() {
       getItems();
     }, []);
 
-    useEffect(()=>{
-      localStorage.setItem("booked",JSON.stringify(booked));
-    },[booked])
     
   return (
     <Router>
@@ -51,7 +48,7 @@ function App() {
     <Routes>
       <Route path = '/' element = {<Items items = {items} booked = {booked} setBooked = {setBooked}/>}></Route>
       <Route path = '/product/list' element ={<ItemList items={items} booked={booked} setBooked = {setBooked} />}></Route>
-      <Route path = '/bookmark' element = {<BookMarkList items = {items} booked = {booked} setBooked = {setBooked}/>}></Route>
+      <Route path = '/bookmark' element = {<BookMarkPage items = {items} booked = {booked} setBooked = {setBooked}/>}></Route>
     </Routes>
     <div id="footer">
             <div>개인정보 처리방침 | 이용 약관</div>

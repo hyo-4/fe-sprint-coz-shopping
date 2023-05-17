@@ -2,7 +2,7 @@ import React, { useState , useEffect } from "react";
 import Card from "../components/Card";
 
 
-function ItemList({items, booked}){
+function ItemList({items, booked , setBooked}){
 
     const [filteredItem, SetfilteredItem] = useState("");
     const [all , SetAll] = useState(true);
@@ -52,9 +52,9 @@ function ItemList({items, booked}){
 
             <div id = "item-filtered">
             {all? items.map((item) => (
-                <Card item = {item} booked = {booked}/>
+                <Card item = {item} booked = {booked} setBooked={setBooked}/>
             )):items.filter((i)=> i.type === filteredItem).map((item) => (
-                <Card item = {item} booked = {booked}/>
+                <Card item = {item} booked = {booked} setBooked = {setBooked}/>
             ))}
             </div>
         </div>
