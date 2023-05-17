@@ -20,7 +20,7 @@ function Header() {
                 </div>
             </div>
             <div id="dropdown-modal">
-                {open ? <Dropdown /> : ''}
+                {open ? <Dropdown/>: ''}
             </div>
         </div>
     );
