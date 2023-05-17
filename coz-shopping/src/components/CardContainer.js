@@ -2,6 +2,10 @@ import React, { useState , useEffect } from "react";
 import Card from "./Card";
 
 function CardContainer({items , booked, setBooked}) {
+
+    useEffect(()=>{
+        setBooked(JSON.parse(localStorage.getItem("booked")));
+    },[]);
     
     return (
         <div className="card-container">

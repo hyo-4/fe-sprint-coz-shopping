@@ -214,5 +214,9 @@ a {
   font-size: 30px;
   margin: 34.2rem 26.5rem;
   position: absolute;
-  color: yellow;
+  color: #FFD361;
+}
+
+.starcolor{
+  color: #FFD361;
 }

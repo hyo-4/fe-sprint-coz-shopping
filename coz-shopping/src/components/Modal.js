@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { HiOutlineX } from "react-icons/hi";
-import { AiFillStar, AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-function Modal({ item , click ,setClick }) {
+function Modal({ item , click ,setClick , booked, setBooked , bookmarking}) {
 
     const [address, setAddress] = useState("");
     const [title, setTitle] = useState("")
@@ -23,7 +23,7 @@ function Modal({ item , click ,setClick }) {
                 {item.type === "Category"? " # ":null}
                 {item ? title : null}
                 </div>
-            <AiFillStar className="star"/>
+            <div id = "modal-bookmark" onClick={bookmarking}>{ booked && booked.includes(item.id) ? <AiFillStar className="star"/>:<AiOutlineStar className="star"/>}</div>
             <div id="close-modal" onClick={()=>setClick(!click)}><HiOutlineX/></div>
             <img id="modal-img" src={item ? address : null}>
             </img>
