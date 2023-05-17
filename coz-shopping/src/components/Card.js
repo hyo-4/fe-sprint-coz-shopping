@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineStar,AiTwotoneStar } from "react-icons/ai";
+import BookMark from "./BookMark";
 
-function Card({ item , booked}) {
+function Card({ item , booked ,setBooked}) {
+
+    const bookmarking = () => {
+
+    }
 
 
     switch (item.type) {
         case 'Product':
-            return (
+            return (          
              <div className="card">
-                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className="bookmark" onClick={bookmarking} >{<BookMark/> ? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div>{item.title}</div>
                 <div>{item.discount}%</div>
@@ -18,15 +23,15 @@ function Card({ item , booked}) {
         case 'Category':
             return (
                 <div className="card">
-                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
-                <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
+                <div className="bookmark">{<BookMark/>? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <img id = "img_card" src= {item.img_url} width="264" height="210" ></img>
                 <div># {item.title}</div>
              </div>
             );
         case 'Brand':
             return (
-                <div className="card">
-                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className="card" >
+                <div className="bookmark" >{<BookMark/>? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.brand_url} width="264" height="210"></img>
                 <div>{item.brand}</div>
                 <div>관심 고객수</div>
@@ -36,7 +41,7 @@ function Card({ item , booked}) {
         case 'Exhibition':
             return (
                 <div className="card">
-                <div className="bookmark">{booked? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
+                <div className="bookmark">{<BookMark/>? <AiTwotoneStar/>:<AiOutlineStar/>}</div>
                 <img id = "img_card" src= {item.img_url} width="264" height="210"></img>
                 <div>{item.title}</div>
                 <div>{item.sub_title}</div>

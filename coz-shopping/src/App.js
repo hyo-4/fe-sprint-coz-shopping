@@ -1,5 +1,4 @@
 import React, { useState , useEffect } from "react";
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import ItemList from './pages/itemList';
@@ -10,8 +9,9 @@ import BookMarkList from './components/BookMarkList';
 
 function App() {
 
+  const bookMarked = JSON.parse(localStorage.getItem("booked"));
   const [items, setItems] = useState([]);
-  const [booked , setBooked] = useState(false);
+  const [booked , setBooked] = useState(bookMarked);
   
   const getItems = async () => {
       const res = await fetch(
@@ -40,16 +40,18 @@ function App() {
     useEffect(() => {
       getItems();
     }, []);
-    
-    console.log(items);
 
+    useEffect(()=>{
+      localStorage.setItem("booked",JSON.stringify(booked));
+    },[booked])
+    
   return (
     <Router>
     <Header/>
     <Routes>
-      <Route path = '/' element = {<Items items = {items} booked = {booked}/>}></Route>
-      <Route path = '/product/list' element ={<ItemList items={items} booked={booked}/>}></Route>
-      <Route path = '/bookmark' element = {<BookMarkList items = {items} booked = {booked}/>}></Route>
+      <Route path = '/' element = {<Items items = {items} booked = {booked} setBooked = {setBooked}/>}></Route>
+      <Route path = '/product/list' element ={<ItemList items={items} booked={booked} setBooked = {setBooked} />}></Route>
+      <Route path = '/bookmark' element = {<BookMarkList items = {items} booked = {booked} setBooked = {setBooked}/>}></Route>
     </Routes>
     <div id="footer">
             <div>개인정보 처리방침 | 이용 약관</div>
