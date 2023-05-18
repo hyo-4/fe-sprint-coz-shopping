@@ -10,7 +10,7 @@ function Toast({toast, setToast , deltoast , setDelToast}) {
             setToast(false);
             setDelToast(false);
          }, 1500);
-    });
+    },[]);
 
 
     return (
