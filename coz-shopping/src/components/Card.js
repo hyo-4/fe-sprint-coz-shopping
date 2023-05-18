@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Modal from "./Modal";
+import Toast from "./Toast";
 
 function Card({ item, booked, setBooked }) {
 
     const [click, setClick] = useState(false);
+    const [toast, setToast] = useState(false);
+    const [deltoast, setDelToast] = useState(false);
 
     const bookmarking = () => {
 
@@ -16,12 +19,14 @@ function Card({ item, booked, setBooked }) {
             newbookedlist = newbookedlist.filter((el)=> el !== item.id);
             localStorage.setItem("booked", JSON.stringify(newbookedlist));
             setBooked(newbookedlist);
+            setDelToast(true);
         }
         else{ // 북마크 되지 않은 상품일 경우에는 추가
             newbookedlist.push(item.id);
             newbookedlist = [...new Set(newbookedlist)];
             localStorage.setItem("booked", JSON.stringify(newbookedlist));
             setBooked(newbookedlist);
+            setToast(true);
         }
         
         
@@ -39,6 +44,7 @@ function Card({ item, booked, setBooked }) {
                 <div>{item.price}원</div>
                 </div>
                 <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked} bookmarking= {bookmarking}/>:null}</div>
+                <div>{toast || deltoast ? <Toast toast = {toast} setToast = {setToast} deltoast = {deltoast} setDelToast = {setDelToast}/>:null}</div>
              </div>
             );
         case 'Category':
@@ -50,6 +56,7 @@ function Card({ item, booked, setBooked }) {
                 <div># {item.title}</div>
                 </div>
                 <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked} bookmarking= {bookmarking} />:null}</div>
+                <div>{toast || deltoast ? <Toast toast = {toast} setToast = {setToast} deltoast = {deltoast} setDelToast = {setDelToast}/>:null}</div>
              </div>
             );
         case 'Brand':
@@ -63,6 +70,7 @@ function Card({ item, booked, setBooked }) {
                 <div>{item.follower}</div>
                 </div>
                 <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked} bookmarking= {bookmarking} />:null}</div>
+                <div>{toast || deltoast ? <Toast toast = {toast} setToast = {setToast} deltoast = {deltoast} setDelToast = {setDelToast}/>:null}</div>
              </div>
             );
         case 'Exhibition':
@@ -75,10 +83,11 @@ function Card({ item, booked, setBooked }) {
                 <div>{item.sub_title}</div>
                 </div>
                 <div>{click? <Modal item = {item} click = {click} setClick = {setClick} booked = {booked} setBooked = {setBooked} bookmarking= {bookmarking} />:null}</div>
+                <div>{toast || deltoast ? <Toast toast = {toast} setToast = {setToast} deltoast = {deltoast} setDelToast = {setDelToast}/>:null}</div>
              </div>
             );
         default:
-            return <div>없음</div>;
+            return <div>loading</div>;
     }
 
 }
